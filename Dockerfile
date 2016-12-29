@@ -25,7 +25,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 COPY ./provisioning/php.ini /usr/local/etc/php/conf.d/timezone.ini
 COPY ./provisioning/apache.conf /etc/apache2/sites-available/000-default.conf
 
-ADD ./provisioning/docker/supervisor.conf /etc/supervisor/conf.d/cte.conf
+ADD ./provisioning/supervisor.conf /etc/supervisor/conf.d/cte.conf
 
 CMD usermod -u 1000 www-data \
     && cd /var/www/html && composer install \
