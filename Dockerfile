@@ -25,13 +25,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ 
 COPY ./provisioning/php.ini /usr/local/etc/php/conf.d/timezone.ini
 COPY ./provisioning/apache.conf /etc/apache2/sites-available/000-default.conf
 
-ADD ./provisioning/supervisor.conf /etc/supervisor/conf.d/cte.conf
+ADD ./provisioning/supervisor.conf /etc/supervisor/conf.d/config.conf
 
 CMD usermod -u 1000 www-data \
     && cd /var/www/html && composer install \
     && chown -R www-data:www-data /var/www/html/app/cache && chmod 777 /var/www/html/app/cache \
     && chown -R www-data:www-data /var/www/html/app/logs && chmod 777 /var/www/html/app/logs \
-    && supervisord -c /etc/supervisor/supervisord.conf -n \
-    && apache2-foreground
+    && supervisord -c /etc/supervisor/supervisord.conf -n
 
-EXPOSE 80
+EXPOSE 80 9001
