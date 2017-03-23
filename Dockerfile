@@ -27,6 +27,10 @@ COPY ./provisioning/apache.conf /etc/apache2/sites-available/000-default.conf
 
 ADD ./provisioning/supervisor.conf /etc/supervisor/conf.d/config.conf
 
+COPY ./supervisor-events /opt/supervisor-events
+
+RUN cd /opt/supervisor-events && composer install
+
 CMD usermod -u 1000 www-data \
     && cd /var/www/html && composer install \
     && chown -R www-data:www-data /var/www/html/app/cache && chmod 777 /var/www/html/app/cache \
