@@ -14,7 +14,7 @@ $listener->listen(function (EventListener $listener, EventNotification $event) u
         $name = $event->getData('groupname') ? $event->getData('groupname') : $event->getData('processname');
 
         if ($state == "PROCESS_STATE_EXITED" OR $state == "PROCESS_STATE_FATAL") {
-            $data = "payload=" . json_encode(["text" => "Problema na {$name}: " . date('d/m/Y H:i:s') . " State: " . $state]);
+            $data = "payload=" . json_encode(["text" => "Problema na fila [{$name}]: " . date('d/m/Y H:i:s') . " Status: " . $state]);
 
             $ch = curl_init(SLACK_NOTIFICATION_HOOK);
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
