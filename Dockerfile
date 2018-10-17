@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:7.2-apache
 
 ENV http_proxy ${http_proxy}
 ENV https_proxy ${http_proxy}
