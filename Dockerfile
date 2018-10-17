@@ -1,8 +1,5 @@
 FROM php:7.2-apache
 
-ENV http_proxy ${http_proxy}
-ENV https_proxy ${http_proxy}
-
 RUN docker-php-ext-install pdo_mysql
 RUN a2enmod rewrite
 
@@ -30,4 +27,4 @@ CMD usermod -u 1000 www-data \
     && chown -R www-data:www-data /var/www/html/app/logs && chmod 777 /var/www/html/app/logs \
     && apache2-foreground
 
-EXPOSE 80 9001
+EXPOSE 80
