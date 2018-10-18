@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [[ $NR_ENABLED == true ]]; then
-    sudo sed -i -e "s/"REPLACE_WITH_REAL_KEY"/$NR_LICENSE_KEY/g" /scripts/newrelic.ini
-    sudo sed -i -e "s/PHP Application/$NR_APP_NAME/g" /scripts/newrelic.ini
-    sudo cp /scripts/newrelic.ini /usr/local/etc/php/conf.d/newrelic.ini
+    sed -i -e "s/"REPLACE_WITH_REAL_KEY"/$NR_LICENSE_KEY/g" /scripts/newrelic.ini
+    sed -i -e "s/PHP Application/$NR_APP_NAME/g" /scripts/newrelic.ini
+    cp /scripts/newrelic.ini /usr/local/etc/php/conf.d/newrelic.ini
 fi
 
 usermod -u 1000 www-data \
