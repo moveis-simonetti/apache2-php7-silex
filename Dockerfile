@@ -47,6 +47,8 @@ COPY ./provisioning/apache.conf /etc/apache2/sites-available/000-default.conf
 COPY start.sh /usr/bin/start
 RUN chmod a+x /usr/bin/start
 
+RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
+
 EXPOSE 80
 
 CMD ["/tini", "--", "/usr/bin/start"]
