@@ -10,14 +10,13 @@ RUN apt-get update && apt-get install -y zip supervisor \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
-        libpng12-dev \
+        libpng-dev \
         git \
         libxslt-dev \
-    && docker-php-ext-install -j$(nproc) iconv mcrypt zip soap \
+        libpq-dev \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd
-
-RUN docker-php-ext-install -j$(nproc) bcmath
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install -j$(nproc) iconv mcrypt zip soap gd bcmath pdo pdo_pgsql pgsql
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
